@@ -1,0 +1,4 @@
+# Abylin Johnson's portfolio
+User-agent: *
+Allow: /
+Disallow: /Abylin-Johnson-Resume.pdf

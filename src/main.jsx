@@ -131,27 +131,19 @@ const articles = [
   },
   {
     id: '02',
-    title: 'Recipe API using LangChain, Ollama and FastApi',
-    date: 'JUL 09, 2024',
-    topic: 'LLM ENGINEERING',
-    tags: ['LangChain', 'Ollama', 'FastAPI'],
-    url: 'https://abylin.medium.com/recipe-api-using-langchain-ollama-and-fastapi-ec06dbdeedcf',
+    title: 'Cyber Security Lab on a Budget: Raspberry Pi, Docker, and Portainer',
+    date: 'JUN 02, 2023',
+    topic: 'HOMELAB SECURITY',
+    tags: ['Raspberry Pi', 'Docker', 'Portainer'],
+    url: 'https://medium.com/@abylin/cyber-security-lab-on-a-budget-raspberry-pi-docker-and-portainer-3ce8110d989e',
   },
   {
     id: '03',
-    title: 'Smooth Sailing with Vite: A Guide to CORS Error Prevention',
-    date: 'JAN 18, 2024',
-    topic: 'WEB ENGINEERING',
-    tags: ['React', 'Vite', 'CORS'],
-    url: 'https://abylin.medium.com/smooth-sailing-with-vite-a-guide-to-cors-error-prevention-in-react-development-with-vite-proxy-a17053533357',
-  },
-  {
-    id: '04',
-    title: 'Breaking Free: My Journey from Spotify to an MP3 Player',
-    date: 'DEC 08, 2023',
-    topic: 'PERSONAL TECHNOLOGY',
-    tags: ['MP3', 'Music', 'Technology'],
-    url: 'https://abylin.medium.com/breaking-free-my-journey-from-spotify-to-an-mp3-player-5c7a841720ab',
+    title: 'Efficient Node.js Hosting: Running Multiple Sites on Ubuntu Server using PM2 and Node.js',
+    date: 'MAY 01, 2023',
+    topic: 'SERVER ENGINEERING',
+    tags: ['Node.js', 'PM2', 'Nginx'],
+    url: 'https://medium.com/@abylin/efficient-node-js-hosting-running-multiple-sites-on-ubuntu-server-using-pm2-and-node-js-c9018ad108c8',
   },
 ]
 
@@ -185,11 +177,39 @@ function ArrowIcon() {
 }
 
 function Header() {
+  const [isCompact, setIsCompact] = React.useState(false)
+
+  React.useEffect(() => {
+    let animationFrame
+
+    const updateNavigation = () => {
+      setIsCompact(window.scrollY > 48)
+      animationFrame = undefined
+    }
+
+    const handleScroll = () => {
+      if (animationFrame === undefined) {
+        animationFrame = window.requestAnimationFrame(updateNavigation)
+      }
+    }
+
+    updateNavigation()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (animationFrame !== undefined) window.cancelAnimationFrame(animationFrame)
+    }
+  }, [])
+
   return (
-    <header className="site-header">
+    <header
+      className={`site-header${isCompact ? ' is-scrolled' : ''}`}
+      id="top"
+    >
       <a className="wordmark" href="#top" aria-label="Abylin Johnson, home">
         <span className="wordmark-mark">AJ</span>
-        <span className="wordmark-text">ABYLIN<br />JOHNSON</span>
+        <span className="wordmark-text"><span>ABYLIN</span><span>JOHNSON</span></span>
       </a>
       <nav aria-label="Primary navigation">
         <a href="#expertise">Expertise</a>
@@ -199,7 +219,9 @@ function Header() {
         <a href="#credentials">Credentials</a>
       </nav>
       <a className="signal-link" href="mailto:abylinjohnson2002@gmail.com">
-        <span className="pulse" aria-hidden="true" /> Open channel
+        <span className="pulse" aria-hidden="true" />
+        <span className="signal-label signal-label-full">Open channel</span>
+        <span className="signal-label signal-label-compact">Contact</span>
       </a>
     </header>
   )

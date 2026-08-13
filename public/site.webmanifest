@@ -1,0 +1,18 @@
+{
+  "name": "Abylin Johnson — Portfolio",
+  "short_name": "Abylin Johnson",
+  "description": "Full-stack AI engineering, secure systems, and reverse-engineering projects by Abylin Johnson.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050806",
+  "theme_color": "#070b0a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

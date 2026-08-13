@@ -81,16 +81,42 @@ svg {
 }
 
 .site-header {
-  position: relative;
-  z-index: 20;
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+  width: 100%;
   min-height: 88px;
+  margin: 0 auto;
   padding: 16px clamp(20px, 4vw, 68px);
   border-bottom: 1px solid var(--line);
   background: rgba(5, 8, 6, 0.72);
   backdrop-filter: blur(16px);
+  transition:
+    top 380ms var(--ease),
+    width 380ms var(--ease),
+    min-height 380ms var(--ease),
+    padding 380ms var(--ease),
+    border-color 380ms ease,
+    border-radius 380ms var(--ease),
+    background 380ms ease,
+    box-shadow 380ms ease;
+}
+
+.site-header.is-scrolled {
+  top: 12px;
+  width: min(calc(100% - 32px), 1380px);
+  min-height: 66px;
+  padding: 10px clamp(16px, 2.5vw, 34px);
+  border: 1px solid rgba(199, 255, 56, 0.26);
+  border-radius: 14px;
+  background: rgba(7, 12, 9, 0.9);
+  box-shadow:
+    0 18px 60px rgba(0, 0, 0, 0.4),
+    0 0 35px rgba(199, 255, 56, 0.045),
+    inset 0 1px rgba(255, 255, 255, 0.035);
 }
 
 .wordmark {
@@ -109,16 +135,35 @@ svg {
   color: var(--signal);
   font-weight: 700;
   clip-path: polygon(0 0, 76% 0, 100% 24%, 100% 100%, 24% 100%, 0 76%);
+  transition: width 380ms var(--ease), height 380ms var(--ease), background 260ms ease, color 260ms ease;
+}
+
+.site-header.is-scrolled .wordmark-mark {
+  width: 36px;
+  height: 36px;
+  color: var(--ink);
+  background: var(--signal);
 }
 
 .wordmark-text {
+  display: grid;
   font: 500 9px/1.2 var(--mono);
   letter-spacing: 0.14em;
+  transition: color 260ms ease;
+}
+
+.site-header.is-scrolled .wordmark-text {
+  color: #cbd2cc;
 }
 
 nav {
   display: flex;
   gap: clamp(24px, 4vw, 58px);
+  transition: gap 380ms var(--ease);
+}
+
+.site-header.is-scrolled nav {
+  gap: clamp(18px, 2.2vw, 34px);
 }
 
 nav a,
@@ -154,6 +199,28 @@ nav a:focus-visible::after {
   justify-self: end;
   gap: 9px;
   color: var(--signal);
+  transition: padding 300ms var(--ease), color 260ms ease, background 260ms ease, border-color 260ms ease;
+}
+
+.site-header.is-scrolled .signal-link {
+  min-height: 38px;
+  padding: 0 14px;
+  color: var(--ink);
+  border: 1px solid var(--signal);
+  border-radius: 8px;
+  background: var(--signal);
+}
+
+.signal-label-compact {
+  display: none;
+}
+
+.site-header.is-scrolled .signal-label-full {
+  display: none;
+}
+
+.site-header.is-scrolled .signal-label-compact {
+  display: inline;
 }
 
 .pulse {
@@ -163,6 +230,12 @@ nav a:focus-visible::after {
   background: var(--signal);
   box-shadow: 0 0 0 0 rgba(199, 255, 56, 0.5);
   animation: pulse 2s infinite;
+}
+
+.site-header.is-scrolled .pulse {
+  background: var(--ink);
+  animation: none;
+  box-shadow: none;
 }
 
 .hero {

@@ -1,0 +1,13 @@
+/* TEAM */
+Name: Abylin Johnson
+Role: Full-Stack AI Engineer
+Location: Bengaluru, India
+Contact: abylinjohnson2002@gmail.com
+LinkedIn: linkedin.com/in/abylinjohnson
+GitHub: github.com/abylinjohnson
+
+/* SITE */
+Design direction: Retro-futuristic systems interface
+Technology: React, Vite, semantic HTML, custom CSS
+Typography: Chakra Petch, DM Mono
+Last updated: 2026-08-14
